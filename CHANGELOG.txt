@@ -3,6 +3,7 @@ Mobile Codes 7.x-2.x-dev, xxxx-xx-xx (development release)
 
 - Added Custom Formatters examples.
 - Added Mobile Codes tokens for Text fields, User vCards and URLs.
+- Improved CTools integration.
 
 
 Mobile Codes 7.x-2.0, 2011-05-02
