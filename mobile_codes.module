@@ -52,7 +52,17 @@ function mobile_codes_permission() {
  * Implements hook_flush_caches().
  */
 function mobile_codes_flush_caches() {
-  file_unmanaged_delete_recursive('public://mobile_codes');
+  $settings = variable_get('mobile_codes_settings', array(
+    'url' => array(
+      'alias' => 'alias',
+    ),
+    'general' => array(
+      'flush' => TRUE,
+    ),
+  ));
+  if ($settings['general']['flush'] && is_dir('public://mobile_codes')) {
+    file_unmanaged_delete_recursive('public://mobile_codes');
+  }
   return array();
 }
 
@@ -231,6 +241,9 @@ function mobile_codes_process_data(&$data) {
   $defaults = variable_get('mobile_codes_settings', array(
     'url' => array(
       'alias' => 'alias',
+    ),
+    'general' => array(
+      'flush' => TRUE,
     ),
   ));
 

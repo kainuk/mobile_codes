@@ -2,7 +2,9 @@ Mobile Codes 7.x-2.x-dev, xxxx-xx-xx (development release)
 --------------------------------------------------------------------------------
 
 - #1666192: Fixed issue with invalid token type.
+- #1542244: Fixed flush cache issue.
 - #1493032: Fixed issue with phpqrcode library.
+- #1450754: Added larger maxlength of provider URL field.
 - #1436592 by Chi: Fixed pass by reference issue.
 - #1223430: Fixed clone() issues.
 - #1182538: Fixed pass by reference issue.

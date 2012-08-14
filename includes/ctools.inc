@@ -134,6 +134,7 @@ function mobile_codes_providers_export_ui_form(&$form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('URL'),
     '#default_value' => isset($form_state['item']->url) ? $form_state['item']->url : '',
+    '#maxlength' => 512,
     '#ajax' => array(
       'callback' => 'mobile_codes_providers_export_ui_form_js',
       'wrapper' => 'parameters-wrapper',

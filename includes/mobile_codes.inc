@@ -12,6 +12,11 @@ function mobile_codes_mobile_codes_settings_alter(&$settings) {
     'label' => t('Use path alias'),
     'description' => t('Use a path alias if it exists (e.g. node/1 -> section/title)'),
   );
+
+  $settings['general']['flush'] = array(
+    'label' => t('Delete files on flush cache?'),
+    'description' => t('')
+  );
 }
 
 /**

@@ -13,6 +13,9 @@ function mobile_codes_settings_form($form_state) {
     'url' => array(
       'alias' => 'alias',
     ),
+    'general' => array(
+      'flush' => TRUE,
+    ),
   ));
 
   $settings = array();
