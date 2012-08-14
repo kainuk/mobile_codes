@@ -19,11 +19,13 @@ function text_mobile_codes_field_formatter_info() {
  * Implements hook_mobile_codes_token_info_alter_alter() on behalf of text.module.
  */
 function text_mobile_codes_token_info_alter_alter(&$data) {
-  $data['tokens']['text-field-value']['mobile-codes'] = array(
-    'name' => t('Mobile Code'),
-    'description' => t('The text field value as a Mobile Code'),
-    'type' => 'mobile-codes'
-  );
+  if (isset($data['tokens']['text-field-value'])) {
+    $data['tokens']['text-field-value']['mobile-codes'] = array(
+      'name' => t('Mobile Code'),
+      'description' => t('The text field value as a Mobile Code'),
+      'type' => 'mobile-codes'
+    );
+  }
 }
 
 /**

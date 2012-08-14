@@ -70,7 +70,7 @@ H|H - best',
  *
  */
 function mobile_codes_libraries_phpqrcode_generate() {
-  require_once libraries_get_path('phpqrcode/qrlib.php');
+  require_once libraries_get_path('phpqrcode') . '/qrlib.php';
 
   header("Content-Type: image/png");
   QRcode::png($_REQUEST['data'], NULL, $_REQUEST['level'], $_REQUEST['size'], $_REQUEST['margin']);
