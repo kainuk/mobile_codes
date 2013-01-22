@@ -7,6 +7,7 @@ Mobile Codes was written and is maintained by Stuart Clark (deciphered).
 - http://stuar.tc/lark
 
 
+
 Features
 --------------------------------------------------------------------------------
 
@@ -22,6 +23,7 @@ Features
     * Link module.
     * Text module.
     * plus example Custom Formatters for extended support.
+  * Pseudo field via Content Types.
   * Input filter.
   * Tokens:
     * Text field tokens.
@@ -37,10 +39,12 @@ Features
   * Shorten module - Shorten URLs in Mobile Codes.
 
 
+
 Required modules
 --------------------------------------------------------------------------------
 
 * Chaos tool suite module.
+
 
 
 Recommended modules
@@ -50,12 +54,18 @@ Recommended modules
 * Libraries API module.
 
 
+
 Configuration
 --------------------------------------------------------------------------------
 
 All configuration for Mobile Codes can be found at:
   Administer > Configuration > Content authoring > Mobile Codes
   http://[www.yoursite.com/path/to/drupal]/admin/config/content/mobile_codes
+
+
+Note: When using the Input filter, be sure to enable the <IMG> tag on your Text
+      format or the Mobile Code will be filtered out.
+
 
 
 Advanced configuration

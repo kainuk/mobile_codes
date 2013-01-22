@@ -1,6 +1,8 @@
 Mobile Codes 7.x-2.x-dev, xxxx-xx-xx (development release)
 --------------------------------------------------------------------------------
 
+- #1743420: Fixed undefined property.
+- #1737288: Fixed undefined index.
 - #1666192: Fixed issue with invalid token type.
 - #1542244: Fixed flush cache issue.
 - #1493032: Fixed issue with phpqrcode library.
@@ -8,6 +10,7 @@ Mobile Codes 7.x-2.x-dev, xxxx-xx-xx (development release)
 - #1436592 by Chi: Fixed pass by reference issue.
 - #1223430: Fixed clone() issues.
 - #1182538: Fixed pass by reference issue.
+- Added pseudo field for Nodes.
 - Added Custom Formatters examples.
 - Added Mobile Codes tokens for Text fields, User vCards and URLs.
 - Added Mobile Codes generator block.

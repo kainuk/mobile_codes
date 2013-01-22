@@ -60,7 +60,7 @@ function mobile_codes_flush_caches() {
       'flush' => TRUE,
     ),
   ));
-  if ($settings['general']['flush'] && is_dir('public://mobile_codes')) {
+  if (isset($settings['general']['flush']) && $settings['general']['flush'] && is_dir('public://mobile_codes')) {
     file_unmanaged_delete_recursive('public://mobile_codes');
   }
   return array();

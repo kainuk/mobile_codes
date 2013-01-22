@@ -55,7 +55,7 @@ function mobile_codes_presets_export_ui_form(&$form, &$form_state) {
     ),
   );
   foreach ($providers as $provider) {
-    if (!$provider->disabled) {
+    if (!isset($provider->disabled) || !$provider->disabled) {
       $form['info']['provider']['#options'][$provider->name] = $provider->name;
     }
   }
