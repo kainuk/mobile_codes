@@ -176,13 +176,13 @@ function mobile_code_data_type($data) {
  *   The processed Mobile Codes request URL if all required attributes are
  *   provided, or FALSE if they aren't.
  */
-function mobile_codes_process_url($data, $attributes) {
+function mobile_codes_process_url($data, &$attributes) {
   if (isset($attributes['#preset']) || isset($attributes['#provider'])) {
     ctools_include('export');
     if (isset($attributes['#preset'])) {
-      $object = ctools_export_crud_load('mobile_codes_presets', $attributes['#preset']);
-      if (is_object($object)) {
-        $preset = clone($object);
+      $attributes['#preset'] = ctools_export_crud_load('mobile_codes_presets', $attributes['#preset']);
+      if (is_object($attributes['#preset'])) {
+        $preset = clone($attributes['#preset']);
         $attributes['#provider'] = $preset->provider;
         $attributes = array_merge($attributes, $preset->defaults);
       }
@@ -194,9 +194,9 @@ function mobile_codes_process_url($data, $attributes) {
       }
     }
 
-    $object = ctools_export_crud_load('mobile_codes_providers', $attributes['#provider']);
-    if (is_object($object)) {
-      $provider = clone($object);
+    $attributes['#provider'] = ctools_export_crud_load('mobile_codes_providers', $attributes['#provider']);
+    if (is_object($attributes['#provider'])) {
+      $provider = clone($attributes['#provider']);
       foreach (element_children($provider->parameters) as $parameter) {
         if (!isset($attributes[$parameter])) {
           switch ($provider->parameters[$parameter]['type']) {
@@ -291,6 +291,7 @@ function mobile_codes_presets_load_all() {
 function theme_mobilecode($variables) {
   if ($url = mobile_codes_process_url($variables['data'], $variables['attributes'])) {
     if ($path = mobile_codes_generate($url)) {
+      drupal_alter('mobile_codes_path', $path, $variables['attributes']);
       return theme('image', array('path' => $path, 'alt' => $variables['image_alt'], 'title' => $variables['image_title'], 'attributes' => $variables['image_attributes'], 'getsize' => $variables['image_getsize']));
     }
   }

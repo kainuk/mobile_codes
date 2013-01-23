@@ -103,6 +103,21 @@ function mobile_codes_presets_export_ui_form(&$form, &$form_state) {
         break;
     }
   }
+
+  $extras = module_invoke_all('mobile_codes_presets_extras', $form_state['item']->extras);
+  if (!empty($extras)) {
+    $form['extras'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Extras'),
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+      '#tree' => TRUE,
+    );
+
+    foreach ($extras as $delta => $extra) {
+      $form['extras'][$delta] = $extra['form'];
+    }
+  }
 }
 
 /**

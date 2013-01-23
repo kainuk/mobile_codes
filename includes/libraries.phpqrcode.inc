@@ -44,17 +44,7 @@ H|H - best',
     'size' => array(
       'token' => 'size',
       'label' => 'Size',
-      'type' => 'select',
-      'value' => '1
-2
-3
-4
-5
-6
-7
-8
-9
-10',
+      'type' => 'text',
     ),
     'margin' => array(
       'token' => 'margin',

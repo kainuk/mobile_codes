@@ -36,6 +36,7 @@ Features
     Nodes Author or a users profile.
   * Mobile Code generator - An Admin module optimized helper block.
 * Support for:
+  * Drupal core Image module - Use an Image style on the Mobile Codes.
   * Shorten module - Shorten URLs in Mobile Codes.
 
 
@@ -51,6 +52,7 @@ Recommended modules
 --------------------------------------------------------------------------------
 
 * Custom Formatters module.
+* Drupal core Image module.
 * Libraries API module.
 
 

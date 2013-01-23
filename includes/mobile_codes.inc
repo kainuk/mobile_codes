@@ -94,7 +94,8 @@ function mobile_codes_mobile_codes_tokens_alter_alter(&$replacements, $context) 
     if ($path_tokens = token_find_with_prefix($context['tokens'], 'path')) {
       foreach ($path_tokens as $preset => $token) {
         if (isset($presets[$preset])) {
-          $request = mobile_codes_process_url($context['data']['mobile-codes-data'], array('#preset' => $preset));
+          $attributes = array('#preset' => $preset);
+          $request = mobile_codes_process_url($context['data']['mobile-codes-data'], $attributes);
           $replacements[$token] = mobile_codes_generate($request);
         }
       }
@@ -104,7 +105,8 @@ function mobile_codes_mobile_codes_tokens_alter_alter(&$replacements, $context) 
     if ($url_tokens = token_find_with_prefix($context['tokens'], 'url')) {
       foreach ($url_tokens as $preset => $token) {
         if (isset($presets[$preset])) {
-          $request = mobile_codes_process_url($context['data']['mobile-codes-data'], array('#preset' => $preset));
+          $attributes = array('#preset' => $preset);
+          $request = mobile_codes_process_url($context['data']['mobile-codes-data'], $attributes);
           $replacements[$token] = file_create_url(mobile_codes_generate($request));
         }
       }
