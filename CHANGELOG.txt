@@ -2,6 +2,7 @@ Mobile Codes 7.x-2.x-dev, xxxx-xx-xx (development release)
 --------------------------------------------------------------------------------
 
 - #1890988: Added Image styles integration.
+- #1855186: Fixed 6.x-1.x to 7.x-2.x upgrade path.
 - #1743420: Fixed undefined property.
 - #1737288: Fixed undefined index.
 - #1666192: Fixed issue with invalid token type.

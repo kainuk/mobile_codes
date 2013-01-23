@@ -23,7 +23,7 @@ function mobile_codes_settings_form($form_state) {
   foreach ($settings as $type => $setting) {
     $form['settings'][$type] = array(
       '#type' => 'fieldset',
-      '#title' => t('!type settings', array('!type' => drupal_strtoupper($type))),
+      '#title' => t('@type settings', array('@type' => drupal_strtoupper($type))),
     );
 
     $order = array();
@@ -40,8 +40,8 @@ function mobile_codes_settings_form($form_state) {
         foreach ($order_settings as $setting) {
           $form['settings'][$type][$setting] = array(
             '#type' => 'checkbox',
-            '#title' => $settings[$type][$setting]['label'],
-            '#description' => $settings[$type][$setting]['description'],
+            '#title' => check_plain($settings[$type][$setting]['label']),
+            '#description' => check_plain($settings[$type][$setting]['description']),
             '#default_value' => isset($defaults[$type][$setting]) ? $defaults[$type][$setting] : FALSE,
           );
         }

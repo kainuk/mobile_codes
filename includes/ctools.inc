@@ -84,18 +84,20 @@ function mobile_codes_presets_export_ui_form(&$form, &$form_state) {
           $value = explode('|', $value);
           $options[$value[0]] = isset($value[1]) ? $value[1] : $value[0];
         }
+        $title = isset($provider->parameters[$parameter]['label']) ? $provider->parameters[$parameter]['label'] : $parameter;
         $form['preset']['defaults'][$parameter] = array(
           '#type' => 'select',
-          '#title' => isset($provider->parameters[$parameter]['label']) ? $provider->parameters[$parameter]['label'] : $parameter,
+          '#title' => check_plain($title),
           '#options' => $options,
           '#default_value' => isset($defaults[$parameter]) ? $defaults[$parameter] : current($options),
         );
         break;
 
       case 'text':
+        $title = isset($provider->parameters[$parameter]['label']) ? $provider->parameters[$parameter]['label'] : $parameter;
         $form['preset']['defaults'][$parameter] = array(
           '#type' => 'textfield',
-          '#title' => isset($provider->parameters[$parameter]['label']) ? $provider->parameters[$parameter]['label'] : $parameter,
+          '#title' => check_plain($title),
           '#size' => 5,
           '#default_value' => isset($defaults[$parameter]) ? $defaults[$parameter] : '',
           '#required' => TRUE,
@@ -212,7 +214,7 @@ function mobile_codes_providers_export_ui_form(&$form, &$form_state) {
 }
 
 /**
- *
+ * Theme function for Mobile Codes providers export UI parameters.
  */
 function theme_mobile_codes_providers_export_ui_form_parameters($variables) {
   $element = $variables['element'];

@@ -144,6 +144,7 @@ function mobile_codes_mobile_codes_default_mobile_codes_preset_alter(&$export) {
     'height' => '400',
     'output_encoding' => 'UTF-8',
   );
+  $preset->extras = array();
 
   $export['large'] = $preset;
   $preset = new stdClass;
@@ -156,6 +157,7 @@ function mobile_codes_mobile_codes_default_mobile_codes_preset_alter(&$export) {
     'height' => '250',
     'output_encoding' => 'UTF-8',
   );
+  $preset->extras = array();
 
   $export['medium'] = $preset;
   $preset = new stdClass;
@@ -168,6 +170,7 @@ function mobile_codes_mobile_codes_default_mobile_codes_preset_alter(&$export) {
     'height' => '150',
     'output_encoding' => 'UTF-8',
   );
+  $preset->extras = array();
 
   $export['small'] = $preset;
 }

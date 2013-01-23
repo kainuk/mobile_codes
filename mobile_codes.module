@@ -30,7 +30,9 @@ function mobile_codes_init() {
   if (!module_exists('ctools')) {
     module_enable(array('ctools'));
     if (!module_exists('ctools')) {
-      drupal_set_message(t('Mobile Codes has been disabled as the required !ctools module is not present.', array('!ctools' => l(t('Chaos tool suite'), 'http://drupal.org/project/ctools'))), 'error');
+      drupal_set_message(t('Mobile Codes has been disabled as the required @ctools module is not present.', array(
+        '@ctools' => l(t('Chaos tool suite'), 'http://drupal.org/project/ctools')
+      )), 'error');
       module_disable(array('mobile_codes'));
     }
   }

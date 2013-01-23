@@ -18,6 +18,7 @@ function block_mobile_codes_default_mobile_codes_preset_alter(&$export) {
     'height' => '180',
     'output_encoding' => 'UTF-8',
   );
+  $preset->extras = array();
 
   $export['block_node_url'] = $preset;
 }
