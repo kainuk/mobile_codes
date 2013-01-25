@@ -49,7 +49,7 @@ function image_mobile_codes_presets_extras($settings) {
  * Implements hook_mobile_codes_path_alter() on behalf of image.module.
  */
 function image_mobile_codes_path_alter(&$path, $attributes) {
-  if (isset($attributes['#preset']->extras['image_style'])) {
+  if (isset($attributes['#preset']->extras['image_style']) && !empty($attributes['#preset']->extras['image_style'])) {
     $path = image_style_url($attributes['#preset']->extras['image_style'], $path);
   }
 }

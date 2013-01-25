@@ -7,6 +7,54 @@
  * Implements hook_schema().
  */
 function mobile_codes_schema() {
+  $schema['mobile_codes_blocks'] = array(
+    'export' => array(
+      'key' => 'name',
+      'key name' => 'Name',
+      'primary key' => 'name',
+      'identifier' => 'block',
+      'default hook' => 'default_mobile_codes_block',
+      'api' => array(
+        'owner' => 'mobile_codes',
+        'api' => 'default_mobile_codes_blocks',
+        'minimum_version' => 2,
+        'current_version' => 2,
+      ),
+    ),
+    'fields' => array(
+      'name' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => '', // @TODO
+      ),
+      'label' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => '', // @TODO
+      ),
+      'preset' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'description' => '', // @TODO
+      ),
+      'data' => array(
+        'type' => 'text',
+        'size' => 'medium',
+        'not null' => TRUE,
+        'serialize' => TRUE,
+        'description' => '', // @TODO
+      ),
+    ),
+    'unique keys' => array(
+      'name' => array('name')
+    ),
+    'primary key' => array('name'),
+  );
+
   $schema['mobile_codes_presets'] = array(
     'export' => array(
       'key' => 'name',
@@ -174,9 +222,48 @@ function mobile_codes_update_6200() {
 }
 
 /**
- * Add 'extras' column to 'mobile_codes_presets' table.
+ * Add 'mobile_codes_blocks' table and add 'extras' column to
+ * 'mobile_codes_presets' table.
  */
 function mobile_codes_update_7200() {
+  // Add 'mobile_codes_blocks' table.
+  db_create_table('mobile_codes_blocks', array(
+    'fields' => array(
+      'name' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => '', // @TODO
+      ),
+      'label' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => '', // @TODO
+      ),
+      'preset' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'description' => '', // @TODO
+      ),
+      'data' => array(
+        'type' => 'text',
+        'size' => 'medium',
+        'not null' => TRUE,
+        'serialize' => TRUE,
+        'serialize' => TRUE,
+        'description' => '', // @TODO
+      ),
+    ),
+    'unique keys' => array(
+      'name' => array('name')
+    ),
+    'primary key' => array('name'),
+  ));
+
+  // Add 'extras' column to 'mobile_codes_presets' table.
   db_add_field('mobile_codes_presets', 'extras', array(
     'type' => 'text',
     'size' => 'medium',

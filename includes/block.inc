@@ -36,10 +36,6 @@ function mobile_codes_block_info() {
  * Implements hook_mobile_codes_block_info_alter() on behalf of block.module.
  */
 function block_mobile_codes_block_info_alter(&$blocks) {
-  $blocks['node_url'] = array(
-    'info' => t('Node URL'),
-  );
-
   $blocks['generate_code'] = array(
     'info' => t('Mobile Code generator'),
   );
@@ -72,45 +68,6 @@ function mobile_codes_block_view($delta) {
     return $function();
   }
   return array();
-}
-
-/**
- * Node URL block configuration form.
- */
-function mobile_codes_block_node_url_configure() {
-  $form = array();
-
-  $form['preset'] = array(
-    '#type' => 'select',
-    '#title' => t('Mobile Codes preset'),
-    '#options' => array(),
-    '#default_value' => variable_get('mobile_codes_block_node_url_preset', 'block_node_url'),
-  );
-
-  foreach (mobile_codes_presets_load_all() as $preset) {
-    $form['preset']['#options'][$preset->name] = $preset->name;
-  }
-
-  return $form;
-}
-
-/**
- * Node URL block save callback.
- */
-function mobile_codes_block_node_url_save($edit) {
-  variable_set('mobile_codes_block_node_url_preset', $edit['preset']);
-}
-
-/**
- * Node URL block view callback.
- */
-function mobile_codes_block_node_url_view() {
-  if (arg(0) == 'node' && arg(1) != '' && arg(2) == '') {
-    return array(
-      'subject' => t('Node URL'),
-      'content' => theme('mobilecode', array('data' => url('node/' . arg(1), array('absolute' => TRUE, 'alias' => TRUE)), 'attributes' => array('#preset' => variable_get('mobile_codes_block_node_url_preset', 'block_node_url'))))
-    );
-  }
 }
 
 /**

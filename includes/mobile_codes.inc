@@ -29,6 +29,16 @@ function mobile_codes_data_url_alias(&$data) {
   $data = str_replace($path, $alias, $data);
 }
 
+
+/**
+ * Implements hook_default_mobile_codes_preset().
+ */
+function mobile_codes_default_mobile_codes_block() {
+  $export = array();
+  drupal_alter('mobile_codes_default_mobile_codes_block', $export);
+  return $export;
+}
+
 /**
  * Implements hook_default_mobile_codes_preset().
  */
@@ -128,6 +138,24 @@ function mobile_codes_mobile_codes_tokens_alter_alter(&$replacements, $context) 
       $replacements += token_generate('mobile-codes', $mobile_codes_tokens, array('mobile-codes-data' => $url));
     }
   }
+}
+
+/**
+ * Implements hook_mobile_codes_default_mobile_codes_block_alter().
+ */
+function mobile_codes_mobile_codes_default_mobile_codes_block_alter(&$export) {
+  $block = new stdClass();
+  $block->disabled = TRUE; /* Edit this to true to make a default block disabled initially */
+  $block->api_version = 2;
+  $block->name = 'current_url';
+  $block->label = 'Current URL';
+  $block->preset = 'block_node_url';
+  $block->data = array(
+    'type' => 'raw',
+    'content' => '[current-page:url:absolute]',
+  );
+
+  $export['current_url'] = $block;
 }
 
 /**

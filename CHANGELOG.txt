@@ -16,6 +16,7 @@ Mobile Codes 7.x-2.x-dev, xxxx-xx-xx (development release)
 - Added Custom Formatters examples.
 - Added Mobile Codes tokens for Text fields, User vCards and URLs.
 - Added Mobile Codes generator block.
+- Added Mobile Codes Blocks system.
 - Fixed issue mobile_codes_presets_load_all() and disabled presets.
 - Improved CTools integration.
 

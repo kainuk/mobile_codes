@@ -36,6 +36,8 @@ function mobile_codes_init() {
       module_disable(array('mobile_codes'));
     }
   }
+
+  module_invoke_all('mobile_codes_init');
 }
 
 /**
@@ -88,18 +90,19 @@ function mobile_codes_mobile_codes_menu_alter(&$items) {
  */
 function mobile_codes_menu_alter(&$items) {
   // @TODO - Make this better.
-  if (isset($items['admin/config/content/mobile_codes/presets'])) {
+  if (isset($items['admin/config/content/mobile_codes/blocks'])) {
     $items['admin/config/content/mobile_codes'] = array_merge(
-      $items['admin/config/content/mobile_codes/presets'],
+      $items['admin/config/content/mobile_codes/blocks'],
       array(
         'title' => 'Mobile Codes',
         'type' => MENU_NORMAL_ITEM,
       )
     );
-    $items['admin/config/content/mobile_codes/presets']['type'] = MENU_DEFAULT_LOCAL_TASK;
-    $items['admin/config/content/mobile_codes/presets']['parent'] = 'admin/config/content/mobile_codes';
-    $items['admin/config/content/mobile_codes/providers']['type'] = MENU_LOCAL_TASK;
-    $items['admin/config/content/mobile_codes/providers']['parent'] = 'admin/config/content/mobile_codes';
+    $export_ui = array('blocks', 'presets', 'providers');
+    foreach ($export_ui as $path) {
+      $items["admin/config/content/mobile_codes/{$path}"]['type'] = $path == 'blocks' ? MENU_DEFAULT_LOCAL_TASK : MENU_LOCAL_TASK;
+      $items["admin/config/content/mobile_codes/{$path}"]['parent'] = 'admin/config/content/mobile_codes';
+    }
   }
 }
 
