@@ -56,16 +56,9 @@ function mobile_codes_permission() {
  * Implements hook_flush_caches().
  */
 function mobile_codes_flush_caches() {
-  $settings = variable_get('mobile_codes_settings', array(
-    'url' => array(
-      'alias' => 'alias',
-    ),
-    'general' => array(
-      'flush' => TRUE,
-    ),
-  ));
-  if (isset($settings['general']['flush']) && $settings['general']['flush'] && is_dir('public://mobile_codes')) {
-    file_unmanaged_delete_recursive('public://mobile_codes');
+  $settings = mobile_codes_defaults();
+  if (isset($settings['general']['flush']) && $settings['general']['flush'] && is_dir($settings['general']['path'])) {
+    file_unmanaged_delete_recursive($settings['general']['path']);
   }
   return array();
 }
@@ -79,7 +72,7 @@ function mobile_codes_mobile_codes_menu_alter(&$items) {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('mobile_codes_settings_form'),
     'access arguments' => array('administer mobile codes'),
-    'file' => 'includes/mobile_codes.admin.inc',
+    'file' => 'mobile_codes.admin.inc',
     'type' => MENU_LOCAL_TASK,
     'weight' => 10,
   );
@@ -123,6 +116,21 @@ function mobile_codes_mobile_codes_theme_alter(&$items) {
 }
 
 /**
+ * Mobile codes settings.
+ */
+function mobile_codes_defaults() {
+  return variable_get('mobile_codes_settings', array(
+    'url' => array(
+      'alias' => 'alias',
+    ),
+    'general' => array(
+      'flush' => TRUE,
+      'path' => 'public://mobile_codes',
+    ),
+  ));
+}
+
+/**
  * Cache a Mobile Code.
  *
  * @param $url
@@ -133,10 +141,11 @@ function mobile_codes_mobile_codes_theme_alter(&$items) {
  *   it isn't.
  */
 function mobile_codes_generate($url) {
-  if (!file_exists($file = 'public://mobile_codes/' . md5(serialize($url)) . '.png')) {
+  $settings = mobile_codes_defaults();
+  if (!file_exists($file = $settings['general']['path'] . '/' . md5(serialize($url)) . '.png')) {
     $request = drupal_http_request($url);
     if ($request->code == 200) {
-      $directory = 'public://mobile_codes';
+      $directory = $settings['general']['path'];
       if (file_prepare_directory($directory, FILE_CREATE_DIRECTORY)) {
         file_unmanaged_save_data($request->data, $file);
       }
@@ -185,7 +194,10 @@ function mobile_codes_process_url($data, &$attributes) {
   if (isset($attributes['#preset']) || isset($attributes['#provider'])) {
     ctools_include('export');
     if (isset($attributes['#preset'])) {
-      $attributes['#preset'] = ctools_export_crud_load('mobile_codes_presets', $attributes['#preset']);
+      if (is_string($attributes['#preset'])) {
+        $attributes['#preset'] = ctools_export_crud_load('mobile_codes_presets', $attributes['#preset']);
+      }
+
       if (is_object($attributes['#preset'])) {
         $preset = clone($attributes['#preset']);
         $attributes['#provider'] = $preset->provider;
@@ -199,7 +211,10 @@ function mobile_codes_process_url($data, &$attributes) {
       }
     }
 
-    $attributes['#provider'] = ctools_export_crud_load('mobile_codes_providers', $attributes['#provider']);
+    if (is_string($attributes['#provider'])) {
+      $attributes['#provider'] = ctools_export_crud_load('mobile_codes_providers', $attributes['#provider']);
+    }
+
     if (is_object($attributes['#provider'])) {
       $provider = clone($attributes['#provider']);
       foreach (element_children($provider->parameters) as $parameter) {
@@ -243,14 +258,7 @@ function mobile_codes_process_url($data, &$attributes) {
 function mobile_codes_process_data(&$data) {
   $settings = array();
   $type = mobile_code_data_type($data);
-  $defaults = variable_get('mobile_codes_settings', array(
-    'url' => array(
-      'alias' => 'alias',
-    ),
-    'general' => array(
-      'flush' => TRUE,
-    ),
-  ));
+  $defaults = mobile_codes_defaults();
 
   drupal_alter('mobile_codes_settings', $settings);
   if (isset($settings[$type]) && count($settings[$type]) > 0) {

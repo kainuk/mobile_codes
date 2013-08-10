@@ -1,6 +1,9 @@
 Mobile Codes 7.x-2.x-dev, xxxx-xx-xx (development release)
 --------------------------------------------------------------------------------
 
+- #2038089: Fixed issue when processed variables are parsed to theme function.
+- #2035599: Removed makefile.
+- #1910924: Added configurable destination path.
 - #1890988: Added Image styles integration.
 - #1855186: Fixed 6.x-1.x to 7.x-2.x upgrade path.
 - #1743420: Fixed undefined property.

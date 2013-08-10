@@ -13,9 +13,17 @@ function mobile_codes_mobile_codes_settings_alter(&$settings) {
     'description' => t('Use a path alias if it exists (e.g. node/1 -> section/title)'),
   );
 
+  $settings['general']['path'] = array(
+    'label' => t('Storage directory'),
+    'description' => t('Where the generated Mobile Codes should be stored.'),
+    'form' => array(
+      '#type' => 'textfield',
+    ),
+  );
+
   $settings['general']['flush'] = array(
     'label' => t('Delete files on flush cache?'),
-    'description' => t('')
+    'description' => t(''),
   );
 }
 

@@ -9,14 +9,7 @@
 function mobile_codes_settings_form($form_state) {
   $form = array('#tree' => TRUE);
 
-  $defaults = variable_get('mobile_codes_settings', array(
-    'url' => array(
-      'alias' => 'alias',
-    ),
-    'general' => array(
-      'flush' => TRUE,
-    ),
-  ));
+  $defaults = mobile_codes_defaults();
 
   $settings = array();
   drupal_alter('mobile_codes_settings', $settings);
@@ -44,6 +37,9 @@ function mobile_codes_settings_form($form_state) {
             '#description' => check_plain($settings[$type][$setting]['description']),
             '#default_value' => isset($defaults[$type][$setting]) ? $defaults[$type][$setting] : FALSE,
           );
+          if (isset($settings[$type][$setting]['form']) && is_array($settings[$type][$setting]['form'])) {
+            $form['settings'][$type][$setting] = $settings[$type][$setting]['form'] + $form['settings'][$type][$setting];
+          }
         }
       }
     }

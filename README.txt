@@ -91,3 +91,22 @@ Advanced configuration
 
   Note: Mobile Codes will automatically detect the PHP QR Code library once
         installed as above and add a new PHP QR Code Provider to the list.
+
+
+
+Makefile entries
+--------------------------------------------------------------------------------
+
+For easy downloading of Mobile Codes and it's required/recommended modules
+and/or libraries, you can use the following entries in your makefile:
+
+
+  projects[ctools][subdir] = contrib
+  projects[ctools][version] = 1.3
+
+  projects[libraries][subdir] = contrib
+  projects[libraries][version] = 2.1
+
+  libraries[phpqrcode][download][type] = get
+  libraries[phpqrcode][download][url] = http://sourceforge.net/projects/phpqrcode/files/releases/phpqrcode-2010100721_1.1.4.zip/download
+
