@@ -1,4 +1,4 @@
-Mobile Codes 7.x-2.x-dev, xxxx-xx-xx (development release)
+Mobile Codes 7.x-2.1, 2013-08-10
 --------------------------------------------------------------------------------
 
 - #2038089: Fixed issue when processed variables are parsed to theme function.
