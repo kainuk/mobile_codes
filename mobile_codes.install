@@ -271,3 +271,14 @@ function mobile_codes_update_7200() {
     'description' => '', // @TODO
   ));
 }
+
+/**
+ * Set default value for 'Storage directory'.
+ */
+function mobile_codes_update_7201() {
+  $settings = mobile_codes_defaults();
+  if (!isset($settings['general']['path']) || empty($settings['general']['path'])) {
+    $settings['general']['path'] = 'public://mobile_codes';
+  }
+  variable_set('mobile_codes_settings', $settings);
+}

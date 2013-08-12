@@ -1,3 +1,10 @@
+Mobile Codes 7.x-2.x-dev, xxxx-xx-xx (Development release)
+--------------------------------------------------------------------------------
+
+- #2062505: Fixed issue with undefined index 'path'.
+
+
+
 Mobile Codes 7.x-2.1, 2013-08-10
 --------------------------------------------------------------------------------
 
@@ -22,6 +29,7 @@ Mobile Codes 7.x-2.1, 2013-08-10
 - Added Mobile Codes Blocks system.
 - Fixed issue mobile_codes_presets_load_all() and disabled presets.
 - Improved CTools integration.
+
 
 
 Mobile Codes 7.x-2.0, 2011-05-02
