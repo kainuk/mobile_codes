@@ -38,6 +38,7 @@ Features
 * Support for:
   * Drupal core Image module - Use an Image style on the Mobile Codes.
   * Shorten module - Shorten URLs in Mobile Codes.
+  * Variable module - Configure the settings via various methods.
 
 
 

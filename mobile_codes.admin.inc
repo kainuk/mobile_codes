@@ -1,13 +1,14 @@
 <?php
 /**
  * @file
+ * Administration functions for the Mobile Codes module.
  */
 
 /**
  * Settings form callback.
  */
-function mobile_codes_settings_form($form_state) {
-  $form = array('#tree' => TRUE);
+function mobile_codes_settings_form($form, &$form_state) {
+  $form['#tree'] = TRUE;
 
   $defaults = mobile_codes_defaults();
 
@@ -53,6 +54,9 @@ function mobile_codes_settings_form($form_state) {
   return $form;
 }
 
+/**
+ * Submit callback for Mobile Codes settings form.
+ */
 function mobile_codes_settings_form_submit($form, &$form_state) {
   drupal_set_message(t('Mobile Codes settings have been updated.'));
   variable_set('mobile_codes_settings', $form_state['values']['settings']);

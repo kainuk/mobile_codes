@@ -1,6 +1,7 @@
 Mobile Codes 7.x-2.x-dev, xxxx-xx-xx (Development release)
 --------------------------------------------------------------------------------
 
+- #2062859: Added support for the Variable module.
 - #2062505: Fixed issue with undefined index 'path'.
 
 
