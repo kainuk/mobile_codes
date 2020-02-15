@@ -120,6 +120,7 @@ function mobile_codes_schema() {
       'name' => array(
         'type' => 'varchar',
         'length' => 255,
+        'not null' => TRUE,
         'description' => '', // @TODO
       ),
       'url' => array(
@@ -195,6 +196,7 @@ function mobile_codes_update_6200() {
       'name' => array(
         'type' => 'varchar',
         'length' => 255,
+        'not null' => TRUE,
         'description' => '', // @TODO
       ),
       'url' => array(
